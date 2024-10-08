@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import java.util.List;
 
 import java.time.LocalDateTime;
 
@@ -27,8 +28,8 @@ public class Product {
     LocalDateTime createdTime;
     @UpdateTimestamp
     LocalDateTime updateTime;
-    @ManyToOne()
-    @JoinColumn(name = "order_id")
-    Order order;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Customer> customers;
 
 }

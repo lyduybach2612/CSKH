@@ -23,6 +23,8 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    String username;
+    String password;
     String name;
     String address;
     String phoneNumber;
@@ -34,13 +36,19 @@ public class Customer {
     @UpdateTimestamp
     LocalDateTime updatedDate;
 
-    @ManyToOne
-    @JoinColumn(name = "manage_id")
-    Manager manager;
 
     @OneToMany(mappedBy = "customer",
             cascade = CascadeType.MERGE,
             fetch = FetchType.LAZY)
     List<CareDiary> careDiaries;
+
+
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "orders",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 
 }

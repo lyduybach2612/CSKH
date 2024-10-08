@@ -21,9 +21,5 @@ public class Manager {
     String managerName;
     String password;
     String email;
-    @OneToMany(mappedBy = "manager",
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.LAZY)
-    List<Customer> customers;
 
 }
