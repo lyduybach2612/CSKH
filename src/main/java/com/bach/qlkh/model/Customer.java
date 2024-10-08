@@ -12,13 +12,13 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "customer")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class User {
     @JoinColumn(name = "manage_id")
     Manager manager;
 
-    @OneToMany(mappedBy = "user",
+    @OneToMany(mappedBy = "customer",
             cascade = CascadeType.MERGE,
             fetch = FetchType.LAZY)
     List<CareDiary> careDiaries;

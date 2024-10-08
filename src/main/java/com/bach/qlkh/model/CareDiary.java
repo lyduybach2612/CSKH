@@ -18,7 +18,7 @@ public class CareDiary {
     Long id;
     String content;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @JoinColumn(name = "customer_id")
+    Customer customer;
 
 }

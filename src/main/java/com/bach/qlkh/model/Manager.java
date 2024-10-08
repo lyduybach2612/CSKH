@@ -24,6 +24,6 @@ public class Manager {
     @OneToMany(mappedBy = "manager",
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY)
-    List<User> users;
+    List<Customer> customers;
 
 }
