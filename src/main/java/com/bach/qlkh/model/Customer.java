@@ -30,7 +30,7 @@ public class Customer {
     String phoneNumber;
     String email;
     LocalDate dateOfBirth;
-    Boolean gender;
+    String gender;
     @CreationTimestamp
     LocalDateTime createdDate;
     @UpdateTimestamp
