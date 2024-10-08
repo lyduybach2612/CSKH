@@ -1,13 +1,12 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/CSKH?useSSL=false
+    url: jdbc:mysql://localhost:3306/CSKH
     username: root
     password: bach2612
-    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 server:
   servlet:
-    context-path: customer_care
+    context-path: /customer_care
