@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<main role="main">
+
+    <section layout:fragment="body" class="album py-5 bg-light">
+        <div class="container content">
+
+            <div class="row">
+                <div th:each="product : ${products}" class="col-md-4 ">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+
+                            <img class="card-img-top" th:src = "${product.imageUrl}" alt="Ảnh đang được cập nhập">
+
+                            <p class="card-text fw-bold" th:text="${product.name}"></p>
+
+                            <div class="d-flex">
+                                <p class="card-text me-2">Mô tả:</p>
+                                <p class="card-text" th:text="${product.description}"></p>
+                            </div>
+
+                            <div class="d-flex">
+                                <p class="card-text me-2">Giá sản phẩm:</p>
+                                <p class="card-text" th:text="${product.price}"></p>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary" th:href="@{|/products/edit/${product.id}|}">Edit</a>
+                                    <a class="btn btn-sm btn-outline-secondary" th:href="@{|/products/delete/${product.id}|}">Delete</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>

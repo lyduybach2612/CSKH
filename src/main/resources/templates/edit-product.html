@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa thông tin sản phẩm</title>
+</head>
+<body>
+<main role="main">
+
+    <section layout:fragment="body" class="album py-5 bg-light">
+        <div class="container content">
+
+            <form th:object="${product}" method="post" th:action="@{|/products/edit/${product.id}|}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Tên sản phẩm</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="name">
+                    <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Mô tả sản phẩm</label>
+                    <input type="text" th:field="*{description}" class="form-control" id="description">
+                    <p th:if="${#fields.hasErrors('description')}" class="text-danger" th:errors="*{description}"></p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Giá tiền</label>
+                    <input type="text" required pattern="^\d+$" th:field="*{price}"
+                           title="Giá tiền chỉ được phép điền số nguyên không âm"
+                           class="form-control" id="price">
+                    <p th:if="${#fields.hasErrors('price')}" class="text-danger" th:errors="*{price}"></p>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Link ảnh sản phẩm</label>
+                    <input type="text" th:field="*{imageUrl}" class="form-control" id="imageUrl">
+                    <p th:if="${#fields.hasErrors('imageUrl')}" class="text-danger" th:errors="*{imageUrl}"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sửa thông tin sản phẩm</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+</body>
+
+
+</html>

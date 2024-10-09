@@ -11,7 +11,7 @@
 <main role="main">
 
     <section layout:fragment="body" class="album py-5 bg-light">
-        <div class="container">
+        <div class="container content">
             <form th:object="${customer}" method="post" th:action="@{/customers/new}">
                 <div class="mb-3">
                     <label for="name" class="form-label">Họ tên</label>
@@ -66,7 +66,7 @@
 
                 <div class="mb-3">
                     <label for="dateOfBirth" class="form-label">Ngày sinh</label>
-                    <input type="date" id="dateOfBirth" name="dateOfBirth" required/>
+                    <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" name="dateOfBirth" required/>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Thêm khách hàng</button>
