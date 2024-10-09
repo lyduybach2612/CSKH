@@ -39,12 +39,14 @@ public class CustomerMapper {
     }
 
     public static void updateCustomerFromCustomerDto(Customer customer, CustomerDto customerDto) {
+
         customer.setName(customerDto.getName());
         customer.setAddress(customerDto.getAddress());
         customer.setPhoneNumber(customerDto.getPhoneNumber());
         customer.setEmail(customerDto.getEmail());
         customer.setGender(customerDto.getGender());
         customer.setDateOfBirth(customerDto.getDateOfBirth());
+
     }
 
 }

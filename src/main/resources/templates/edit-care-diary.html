@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Chăm sóc khách hàng</title>
+</head>
+<body>
+<main role="main">
+
+    <section layout:fragment="body" class="album py-5 bg-light">
+        <div class="container content">
+
+            <form th:object="${careDiary}" method="post" th:action="@{|/careDiaries/edit/${careDiary.id}|}">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Vấn đề đang gặp</label>
+                    <input type="text" th:field="*{title}" class="form-control" id="title">
+                    <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Mô tả vấn đề</label>
+                    <input type="text" th:field="*{content}" class="form-control" id="content">
+                    <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sửa thông tin</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+</body>
+
+
+</html>

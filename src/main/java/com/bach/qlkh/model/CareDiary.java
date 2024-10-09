@@ -16,7 +16,9 @@ public class CareDiary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    String title;
     String content;
+    Boolean state;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     Customer customer;
