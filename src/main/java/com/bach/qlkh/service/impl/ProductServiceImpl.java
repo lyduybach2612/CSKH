@@ -1,8 +1,11 @@
 package com.bach.qlkh.service.impl;
 
+import com.bach.qlkh.configuration.SecurityUtil;
 import com.bach.qlkh.dto.ProductDto;
 import com.bach.qlkh.mapper.ProductMapper;
+import com.bach.qlkh.model.Manager;
 import com.bach.qlkh.model.Product;
+import com.bach.qlkh.repository.ManagerRepository;
 import com.bach.qlkh.repository.ProductRepository;
 import com.bach.qlkh.service.ProductService;
 import lombok.AccessLevel;
@@ -17,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
+    ManagerRepository managerRepository;
     ProductRepository productRepository;
 
     @Override

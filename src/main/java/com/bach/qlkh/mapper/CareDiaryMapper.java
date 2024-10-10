@@ -12,7 +12,7 @@ public class CareDiaryMapper {
                 .content(careDiary.getContent())
                 .title(careDiary.getTitle())
                 .state(careDiary.getState())
-                .customer(null)
+                .customer(careDiary.getCustomer())
                 .build();
 
     }
@@ -24,7 +24,7 @@ public class CareDiaryMapper {
                 .content(careDiary.getContent())
                 .title(careDiary.getTitle())
                 .state(careDiary.getState())
-                .customer(null)
+                .customer(careDiary.getCustomer())
                 .build();
 
     }

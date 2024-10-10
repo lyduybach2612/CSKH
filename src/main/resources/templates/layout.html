@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org"
 >
 <head>
     <meta charset="UTF-8">
@@ -25,11 +26,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/products/orders}">Đơn hàng</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link active" th:if="${isManager}" th:href="@{/customers}">Khách hàng</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/products/new}">Tạo sản phẩm</a>
+                    <a class="nav-link active" th:if="${isManager}" th:href="@{/products/new}">Tạo sản phẩm</a>
                 </li>
 
                 <li class="nav-item">
@@ -37,11 +42,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" th:if="${isManager}" th:href="@{/careDiaries}">Nhật kí khách hàng</a>
+                    <a class="nav-link active" th:href="@{/careDiaries}">Nhật kí khách hàng</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/careDiaries/new}">Chăm sóc khách hàng</a>
+                    <a class="nav-link active" th:if="${isManager == false}" th:href="@{/careDiaries/new}">Chăm sóc khách hàng</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -49,9 +54,9 @@
                         Tài khoản
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/register}">Đăng kí</a></li>
-                        <li><a class="dropdown-item" th:href="@{/login}">Đăng nhập</a></li>
-                        <li><a class="dropdown-item" th:href="@{/logout}">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{/register}">Đăng kí</a></li>
+                        <li><a class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{/login}">Đăng nhập</a></li>
+                        <li><a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>

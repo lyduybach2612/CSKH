@@ -1,9 +1,12 @@
 package com.bach.qlkh.service.impl;
 
+import com.bach.qlkh.configuration.SecurityUtil;
 import com.bach.qlkh.dto.CareDiaryDto;
 import com.bach.qlkh.mapper.CareDiaryMapper;
 import com.bach.qlkh.model.CareDiary;
+import com.bach.qlkh.model.Customer;
 import com.bach.qlkh.repository.CareDiaryRepository;
+import com.bach.qlkh.repository.CustomerRepository;
 import com.bach.qlkh.service.CareDiaryService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +21,7 @@ import java.util.List;
 public class CareDiaryServiceImpl implements CareDiaryService {
 
     CareDiaryRepository careDiaryRepository;
+    CustomerRepository customerRepository;
 
     @Override
     public List<CareDiaryDto> getAllCareDiaries() {
@@ -30,8 +34,11 @@ public class CareDiaryServiceImpl implements CareDiaryService {
     @Override
     public void createCareDiary(CareDiaryDto careDiaryDto) {
 
+        String username = SecurityUtil.getSessionUser();
+        Customer customer = customerRepository.findByUsername(username);
         careDiaryDto.setState(false);
         CareDiary careDiary = CareDiaryMapper.mapToCareDiary(careDiaryDto);
+        careDiary.setCustomer(customer);
         careDiaryRepository.save(careDiary);
 
     }

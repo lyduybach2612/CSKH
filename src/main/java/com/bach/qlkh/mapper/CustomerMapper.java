@@ -17,7 +17,7 @@ public class CustomerMapper {
                 .dateOfBirth(customerDto.getDateOfBirth())
                 .password(customerDto.getPassword())
                 .username(customerDto.getUsername())
-                .careDiaries(null)
+                .careDiaries(customerDto.getCareDiaries())
                 .products(null)
                 .build();
     }
@@ -33,7 +33,7 @@ public class CustomerMapper {
                 .dateOfBirth(customer.getDateOfBirth())
                 .password(customer.getPassword())
                 .username(customer.getUsername())
-                .careDiaries(null)
+                .careDiaries(customer.getCareDiaries())
                 .products(null)
                 .build();
     }

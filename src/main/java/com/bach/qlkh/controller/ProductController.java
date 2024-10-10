@@ -1,6 +1,11 @@
 package com.bach.qlkh.controller;
 
+import com.bach.qlkh.configuration.SecurityUtil;
 import com.bach.qlkh.dto.ProductDto;
+import com.bach.qlkh.model.Customer;
+import com.bach.qlkh.model.Manager;
+import com.bach.qlkh.service.CustomerService;
+import com.bach.qlkh.service.ManagerService;
 import com.bach.qlkh.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -20,9 +25,16 @@ import java.util.List;
 public class ProductController {
 
     ProductService productService;
+    CustomerService customerService;
+    ManagerService managerService;
 
     @GetMapping()
     public String listProductsForm(Model model) {
+        String username = SecurityUtil.getSessionUser();
+
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
 
         List<ProductDto> products = productService.getAllProducts();
         model.addAttribute("products", products);
@@ -33,6 +45,10 @@ public class ProductController {
     @GetMapping("/new")
     public String createProductForm(Model model) {
 
+        String username = SecurityUtil.getSessionUser();
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
         ProductDto product = new ProductDto();
         model.addAttribute("product", product);
         return "create-product";

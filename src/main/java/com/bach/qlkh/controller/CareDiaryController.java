@@ -1,8 +1,13 @@
 package com.bach.qlkh.controller;
 
 
+import com.bach.qlkh.configuration.SecurityUtil;
 import com.bach.qlkh.dto.CareDiaryDto;
+import com.bach.qlkh.model.Customer;
+import com.bach.qlkh.model.Manager;
 import com.bach.qlkh.service.CareDiaryService;
+import com.bach.qlkh.service.CustomerService;
+import com.bach.qlkh.service.ManagerService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +26,23 @@ import java.util.List;
 public class CareDiaryController {
 
     CareDiaryService careDiaryService;
+    ManagerService managerService;
+    CustomerService customerService;
 
     @GetMapping()
     public String careDiaryList(Model model) {
 
         List<CareDiaryDto> careDiaries = careDiaryService.getAllCareDiaries();
+        String username = SecurityUtil.getSessionUser();
+
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
+
+        Customer customer = customerService.findByUsername(username);
+        if (customer != null) {
+            model.addAttribute("customer", customer);
+        }
         model.addAttribute("careDiaries", careDiaries);
         return "care-diary-list";
 
@@ -34,6 +51,11 @@ public class CareDiaryController {
     @GetMapping("/new")
     public String createCareDiaryForm(Model model) {
 
+        String username = SecurityUtil.getSessionUser();
+
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
         CareDiaryDto careDiary = new CareDiaryDto();
         model.addAttribute("careDiary", careDiary);
         return "create-care-diary";
@@ -65,6 +87,11 @@ public class CareDiaryController {
     @GetMapping("/edit/{careDiaryId}")
     public String editCareDiaryForm(@PathVariable Long careDiaryId, Model model) {
 
+        String username = SecurityUtil.getSessionUser();
+
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
         CareDiaryDto careDiary = careDiaryService.findCareDiary(careDiaryId);
         model.addAttribute("careDiary", careDiary);
         return "edit-care-diary";

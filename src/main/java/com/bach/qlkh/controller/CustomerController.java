@@ -1,8 +1,11 @@
 package com.bach.qlkh.controller;
 
+import com.bach.qlkh.configuration.SecurityUtil;
 import com.bach.qlkh.dto.CustomerDto;
 import com.bach.qlkh.model.Customer;
+import com.bach.qlkh.model.Manager;
 import com.bach.qlkh.service.CustomerService;
+import com.bach.qlkh.service.ManagerService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +24,16 @@ import java.util.List;
 public class CustomerController {
 
     CustomerService customerService;
+    ManagerService managerService;
+
 
     @GetMapping()
     public String listCustomersForm(Model model) {
+
+        String username = SecurityUtil.getSessionUser();
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
         List<CustomerDto> customers = customerService.getAllCustomer();
         model.addAttribute("customers", customers);
         return "customer-list";
@@ -31,6 +41,12 @@ public class CustomerController {
 
     @GetMapping("/new")
     public String newCustomerForm(Model model) {
+
+        String username = SecurityUtil.getSessionUser();
+
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
         CustomerDto customer = new CustomerDto();
         model.addAttribute("customer", customer);
         return "create-customer";
@@ -45,6 +61,11 @@ public class CustomerController {
             model.addAttribute("customer", customer);
             return "create-customer";
         }
+        Customer existingCustomer = customerService.findByUsername(customer.getUsername());
+        if (existingCustomer != null) {
+            model.addAttribute("customer", customer);
+            return "redirect:/customers/new?fail" ;
+        }
         customerService.createCustomer(customer);
         return "redirect:/customers";
 
@@ -52,6 +73,12 @@ public class CustomerController {
 
     @GetMapping("/edit/{customerId}")
     public String editCustomerForm(@PathVariable("customerId") Long customerId, Model model) {
+
+        String username = SecurityUtil.getSessionUser();
+
+        Manager manager = managerService.findByUsername(username);
+        boolean isManager = manager != null;
+        model.addAttribute("isManager", isManager);
         CustomerDto customer = customerService.findCustomerById(customerId);
         model.addAttribute("customer", customer);
         return "edit-customer";
