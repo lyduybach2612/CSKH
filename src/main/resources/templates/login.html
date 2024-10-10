@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<main role="main">
+
+    <section layout:fragment="body" class="album py-5 bg-light">
+        <div class="container login">
+            <div class="text-center fw-bold fs-3 ">Log in</div>
+            <div class="fs-5 text-center text-secondary mt-1">Sign in your account</div>
+            <form method="post" th:action="@{/login}">
+                <div th:if="${param.success}" class="text-primary">You have registered successfully</div>
+                <div class="text-danger mb-2" th:if="${param.fail}">Username or email is invalid</div>
+                <div class="text-primary mb-2" th:if="${param.logout}">You have been logged out</div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+
+                <div class="mb-3">If you haven't had an account, please <a th:href="@{/register}">Register here</a></div>
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>

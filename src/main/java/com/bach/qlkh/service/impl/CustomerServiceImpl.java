@@ -8,6 +8,7 @@ import com.bach.qlkh.service.CustomerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     CustomerRepository customerRepository;
+    PasswordEncoder passwordEncoder;
 
     @Override
     public List<CustomerDto> getAllCustomer() {
@@ -29,8 +31,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void createCustomer(CustomerDto customerDto) {
+
         Customer customer = CustomerMapper.mapToCustomer(customerDto);
+        customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
         customerRepository.save(customer);
+
     }
 
     @Override

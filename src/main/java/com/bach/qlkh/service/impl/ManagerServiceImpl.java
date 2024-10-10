@@ -1,5 +1,6 @@
 package com.bach.qlkh.service.impl;
 
+import com.bach.qlkh.model.Manager;
 import com.bach.qlkh.repository.ManagerRepository;
 import com.bach.qlkh.service.ManagerService;
 import lombok.AccessLevel;
@@ -14,4 +15,11 @@ public class ManagerServiceImpl implements ManagerService {
 
     ManagerRepository managerRepository;
 
+
+    @Override
+    public Manager findByUsername(String username) {
+
+        return managerRepository.findByManagerName(username);
+
+    }
 }
