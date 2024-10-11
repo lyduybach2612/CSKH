@@ -4,33 +4,31 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import java.util.List;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "products")
+@Table(name = "orders")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Product {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name;
-    String description;
-    Long price;
-    String imageURL;
-    @CreationTimestamp
-    LocalDateTime createdTime;
-    @UpdateTimestamp
-    LocalDateTime updateTime;
 
-    @OneToMany(mappedBy = "product")
-    List<Order> orders;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    Product product;
+
+    @CreationTimestamp
+    LocalDateTime creationDate;
 
 }

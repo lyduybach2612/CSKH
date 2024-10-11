@@ -25,6 +25,5 @@ public class ProductDto {
     @Min(value = 0, message = "Giá sản phẩm không thể nhỏ hơn 0")
     Long price;
     String imageUrl;
-    private List<Customer> customers;
 
 }

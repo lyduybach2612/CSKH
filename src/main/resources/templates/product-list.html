@@ -34,7 +34,7 @@
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a class="btn btn-sm btn-outline-secondary" th:if="${isManager == false}" th:href="@{|/products/buy/${product.id}|}">Mua hàng</a>
+                                    <a class="btn btn-sm btn-outline-secondary" th:if="${isManager == false}" th:href="@{|/orders|}">Mua hàng</a>
                                     <a class="btn btn-sm btn-outline-secondary" th:if="${isManager}" th:href="@{|/products/edit/${product.id}|}">Sửa thông tin</a>
                                     <a class="btn btn-sm btn-outline-secondary" th:if="${isManager}" th:href="@{|/products/delete/${product.id}|}">Xoá</a>
                                 </div>

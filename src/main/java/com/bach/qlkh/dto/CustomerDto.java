@@ -39,6 +39,5 @@ public class CustomerDto {
     LocalDate dateOfBirth;
     String gender;
     List<CareDiary> careDiaries;
-    private List<Product> products;
 
 }

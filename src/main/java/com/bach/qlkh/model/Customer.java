@@ -42,13 +42,7 @@ public class Customer {
             fetch = FetchType.LAZY)
     List<CareDiary> careDiaries;
 
-
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "orders",
-            joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+    @OneToMany(mappedBy = "customer")
+    List<Order> orders;
 
 }

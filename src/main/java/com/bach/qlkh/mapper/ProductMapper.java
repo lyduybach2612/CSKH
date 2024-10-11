@@ -13,7 +13,6 @@ public class ProductMapper {
                 .price(product.getPrice())
                 .description(product.getDescription())
                 .imageURL(product.getImageUrl())
-                .customers(null)
                 .build();
 
     }
@@ -26,7 +25,6 @@ public class ProductMapper {
                 .price(product.getPrice())
                 .description(product.getDescription())
                 .imageUrl(product.getImageURL())
-                .customers(null)
                 .build();
 
     }

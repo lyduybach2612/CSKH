@@ -18,7 +18,6 @@ public class CustomerMapper {
                 .password(customerDto.getPassword())
                 .username(customerDto.getUsername())
                 .careDiaries(customerDto.getCareDiaries())
-                .products(null)
                 .build();
     }
 
@@ -34,7 +33,6 @@ public class CustomerMapper {
                 .password(customer.getPassword())
                 .username(customer.getUsername())
                 .careDiaries(customer.getCareDiaries())
-                .products(null)
                 .build();
     }
 
