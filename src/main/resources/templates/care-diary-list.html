@@ -19,8 +19,13 @@
                         <div class="card-body">
                             <p class="card-text fw-bold" th:text="${careDiary.title}"></p>
 
+                            <div class="d-flex" th:if="${isManager}">
+                                <p class="card-text me-2">Tên khách hàng:</p>
+                                <p class="card-text" th:text="${careDiary.customer.name}"></p>
+                            </div>
+
                             <div class="d-flex">
-                                <p class="card-text me-2">Địa chỉ:</p>
+                                <p class="card-text me-2">Chi tiết vấn đề:</p>
                                 <p class="card-text" th:text="${careDiary.content}"></p>
                             </div>
 
