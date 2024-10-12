@@ -1,4 +1,4 @@
-# Chăm sóc khách hàng
+# SMART SALES
 
 ## Giới thiệu
 Chăm sóc khách hàng là web app được xây dựng bằng Spring Boot với Java 21.
