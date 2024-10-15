@@ -21,7 +21,7 @@
         <div class="container content">
             <div class="text-center fw-bold fs-3 ">Đăng Kí</div>
             <div class="fs-5 text-center text-secondary mt-1">Tạo tài khoản khách hàng</div>
-            <form th:object="${customer}" method="post" th:action="@{/customers/new}">
+            <form th:object="${customer}" method="post" th:action="@{/register}">
                 <div class="text-danger mb-2 fs-5" th:if="${param.fail}">Tài khoản đã tồn tại</div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Họ tên</label>

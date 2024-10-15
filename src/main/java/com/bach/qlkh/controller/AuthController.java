@@ -58,7 +58,7 @@ public class AuthController {
         Customer existingCustomer = customerService.findByUsername(customer.getUsername());
         if (existingCustomer != null) {
             model.addAttribute("customer", customer);
-            return "redirect:/customers/new?fail" ;
+            return "redirect:/register?fail" ;
         }
 
         customerService.createCustomer(customer);

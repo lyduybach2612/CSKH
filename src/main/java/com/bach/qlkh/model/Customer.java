@@ -38,11 +38,11 @@ public class Customer {
 
 
     @OneToMany(mappedBy = "customer",
-            cascade = CascadeType.MERGE,
+            cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY)
     List<CareDiary> careDiaries;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
     List<Order> orders;
 
 }
